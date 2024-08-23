@@ -6,18 +6,32 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.*;
+
 
 @Entity
 public class StudentEntity {
-	
+
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 	private Long rollno;
-	
+
+	@NotBlank(message = "Name is required")
+	@Size(min = 1, max = 50, message = "Name must be between 1 and 50 characters")
+	@Pattern(regexp = "^[a-zA-Z ]*$", message = "Name can only contain alphabetic characters and spaces")
 	private String name;
+
 	private String address;
+
+	@Email(message = "Invalid email address")
 	private String email;
-	private long phoneno;
+
+	@NotNull(message = "Phone number is required")
+	private Long phoneno;
+
+	@NotNull(message = "Age is required")
+	@Min(value = 3, message = "Age must be greater than or equal to 3")
+	@Max(value = 100, message = "Age must be less than or equal to 100")
 	private int age;
 	
 	public StudentEntity (String name, long rollno, String address, String email, long phoneno, int age) {
@@ -45,7 +59,7 @@ public class StudentEntity {
 	public long getRollno() {
 		return rollno;
 	}
-//	@JsonIgnore 
+
 	public void setRollno(long rollno) {
 		this.rollno = rollno;
 	}

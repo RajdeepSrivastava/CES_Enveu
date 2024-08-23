@@ -3,6 +3,7 @@ package com.project.ces.controller;
 import java.util.List;
 
 import com.project.ces.model.ResponseData;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -25,7 +26,7 @@ public class StudentController {
 	StudentService studentService;
 	
     @PostMapping("/create/student")
-    public ResponseEntity<StudentEntity> createStudent(@RequestBody StudentEntity student) {
+    public ResponseEntity<StudentEntity> createStudent(@Valid @RequestBody StudentEntity student) {
         StudentEntity createdStudent = studentService.saveStudent(student);
         return new ResponseEntity<>(createdStudent, HttpStatus.CREATED);
     }
@@ -61,5 +62,4 @@ public class StudentController {
         studentService.deleteStudent(rollno, responseData);
         return new ResponseEntity<>(responseData, HttpStatusCode.valueOf(responseData.getCode()));
     }
-
 }

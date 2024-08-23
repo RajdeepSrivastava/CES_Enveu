@@ -46,8 +46,7 @@ public class EnrollmentService {
         
         return enrollmentRepo.save(enrollment);
     }
-    
-    
+
     public void deleteEnrollment(Long enrollmentId, ResponseData responseData) {
         if (!enrollmentRepo.existsById(enrollmentId))
         {

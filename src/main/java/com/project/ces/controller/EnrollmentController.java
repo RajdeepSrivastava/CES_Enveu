@@ -10,17 +10,9 @@ import org.springframework.web.bind.annotation.*;
 import com.project.ces.entity.CourseEntity;
 import com.project.ces.entity.EnrollmentEntity;
 import com.project.ces.entity.StudentEntity;
-import com.project.ces.repository.EnrollmentRepository;
-import com.project.ces.service.CourseService;
 import com.project.ces.service.EnrollmentService;
 
-import jakarta.servlet.http.HttpServletResponse;
-
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.net.http.HttpHeaders;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 public class EnrollmentController {
@@ -65,6 +57,5 @@ public class EnrollmentController {
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-
     }
 }
